@@ -1,0 +1,4 @@
+common-obj-y += util.o
+common-obj-y += dns.o
+common-obj-y += dns_sender.o
+common-obj-y += ksniffer.o
