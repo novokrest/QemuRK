@@ -42,6 +42,7 @@ class DnsQueryReceiver
 
 public:
     DnsQueryReceiver(int port);
+    DnsQueryReceiver(std::string const &ip, int port);
     ~DnsQueryReceiver();
 
     DnsQuery ReceiveQuery();

@@ -103,10 +103,10 @@ void DnsQuerySender::SendQuery(const DnsQuery &query)
 /*DnsQueryReceiver*/
 /****************************/
 
-DnsQueryReceiver::DnsQueryReceiver(int port)
-    : receiver_(new UdpReceiver(port))
-{
 
+DnsQueryReceiver::DnsQueryReceiver(std::string const &ip, int port)
+    : receiver_(new UdpReceiver(ip, port))
+{
 }
 
 DnsQueryReceiver::~DnsQueryReceiver()

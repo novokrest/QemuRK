@@ -151,8 +151,8 @@ void ps2_queue(void *opaque, int b)
     q->count++;
     s->update_irq(s->update_arg, 1);
 
-    KeySnifferPtr ksniffer = get_key_sniffer();
-    sniff(ksniffer, b);
+    KeySnifferPtr ksniffer = key_sniffer_get_instance();
+    key_sniffer_sniff(ksniffer, b);
 }
 
 /*

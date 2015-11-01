@@ -28,6 +28,7 @@ public:
     UdpSender(std::string const &remote, int port);
     ~UdpSender();
 
+    int Send(std::string const &msg);
     int Send(const char *buffer, int length);
 };
 
@@ -37,7 +38,7 @@ class UdpReceiver
     int sockfd_;
 
 public:
-    UdpReceiver(int port);
+    UdpReceiver(std::string const &ip, int port);
     ~UdpReceiver();
 
     int Receive(char *buffer, int length);

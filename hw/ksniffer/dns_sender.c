@@ -67,8 +67,6 @@ int dns_query_sender_send_dns_query(DnsQuerySenderPtr sender, const char *hostna
                        0,
                        (struct sockaddr*)&sender->saddr, sizeof(sender->saddr));
 
-    print_error_msg("!!!!!!!!!!");
-
     if (sendcount != length) {
         print_error_msg("Fail to send full dns query");
         return -1;

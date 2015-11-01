@@ -9,7 +9,8 @@ LIBS += -pthread
 SOURCES += main.cpp \
     udp.cpp \
     dns.cpp \
-    dns_util.cpp
+    dns_util.cpp \
+    ip.cpp
 
 
 HEADERS += \
@@ -17,4 +18,5 @@ HEADERS += \
     udp.h \
     dns.hpp \
     dns.h \
-    dns_util.h
+    dns_util.h \
+    ip.hpp

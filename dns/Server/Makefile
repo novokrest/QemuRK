@@ -48,11 +48,13 @@ OBJECTS_DIR   = ./
 SOURCES       = main.cpp \
 		udp.cpp \
 		dns.cpp \
-		dns_util.cpp 
+		dns_util.cpp \
+		ip.cpp 
 OBJECTS       = main.o \
 		udp.o \
 		dns.o \
-		dns_util.o
+		dns_util.o \
+		ip.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/shell-unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
@@ -306,6 +308,10 @@ dns.o: dns.cpp dns.hpp \
 
 dns_util.o: dns_util.cpp dns.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dns_util.o dns_util.cpp
+
+ip.o: ip.cpp ip.hpp \
+		common.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ip.o ip.cpp
 
 ####### Install
 

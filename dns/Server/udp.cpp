@@ -52,6 +52,11 @@ UdpSender::~UdpSender()
     if (remote_) freeaddrinfo(remote_);
 }
 
+int UdpSender::Send(std::string const &msg)
+{
+    return Send(msg.c_str(), msg.length());
+}
+
 int UdpSender::Send(const char *buffer, int length)
 {
     ssize_t count = sendto (sockfd_, buffer, length, 0, remote_->ai_addr, remote_->ai_addrlen);
@@ -61,9 +66,9 @@ int UdpSender::Send(const char *buffer, int length)
     return count;
 }
 
-UdpReceiver::UdpReceiver(int port)
+UdpReceiver::UdpReceiver(std::string const &ip, int port)
 {
-    IpAddressInfo *saddr = UdpConnectionHelper::CreateIpAddressInfo("192.168.30.201", port);
+    IpAddressInfo *saddr = UdpConnectionHelper::CreateIpAddressInfo(ip, port);
 
     sockfd_ = socket(saddr->ai_family, saddr->ai_socktype, saddr->ai_protocol);
     if (sockfd_ == -1) {

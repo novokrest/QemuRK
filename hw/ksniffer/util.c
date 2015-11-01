@@ -14,3 +14,8 @@ void print_error_msg(const char *msg)
 {
     printf("ERROR: %s\n", msg);
 }
+
+void print_msg(const char *msg)
+{
+    printf("%s\n", msg);
+}

