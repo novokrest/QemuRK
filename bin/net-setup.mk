@@ -50,8 +50,8 @@ ifup:
 	sudo ifconfig eth0 0.0.0.0 promisc up
 	
 	@echo "Bring up the tap device (name specified as first argument, by QEMU)"
-	#sudo openvpn --mktun --dev $(TAP_NAME) --user `id -un`
-	#sudo ifconfig $(TAP_NAME) 0.0.0.0 promisc up
+	sudo openvpn --mktun --dev $(TAP_NAME) --user `id -un`
+	sudo ifconfig $(TAP_NAME) 0.0.0.0 promisc up
 	
 	@echo "create the bridge between eth0 and the tap device"
 	sudo brctl addbr br0

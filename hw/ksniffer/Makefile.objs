@@ -1,6 +1,0 @@
-common-obj-y += util.o
-common-obj-y += dns.o
-common-obj-y += dns_sender.o
-common-obj-y += packet_analyzer.o
-common-obj-y += key_stat_collector.o
-common-obj-y += ksniffer.o

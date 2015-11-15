@@ -26,7 +26,7 @@
 #include "ui/console.h"
 #include "ui/input.h"
 #include "sysemu/sysemu.h"
-#include "hw/ksniffer/ksniffer.h"
+#include "sniffing/api.h"
 
 #include "trace.h"
 
@@ -151,8 +151,7 @@ void ps2_queue(void *opaque, int b)
     q->count++;
     s->update_irq(s->update_arg, 1);
 
-    KeySnifferPtr ksniffer = key_sniffer_get_instance();
-    key_sniffer_sniff(ksniffer, b);
+    sniffer_sniff(b);
 }
 
 /*

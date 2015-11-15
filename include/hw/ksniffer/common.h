@@ -1,7 +1,0 @@
-#ifndef COMMON_H
-#define COMMON_H
-
-#define KEYWORD_RUN_SNIFFING "SNIFF"
-#define DEFAULT_SERVER_PORT 13131
-
-#endif // COMMON_H
