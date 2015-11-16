@@ -1,8 +1,8 @@
 CC = g++
 CFLAGS = 
-CPPFLAGS = -std=c++11 -I. -I./tomcrypt/headers
+CPPFLAGS = -std=c++11 -I. -I./tomcrypt/headers -pthread
 LDFLAGS = 
-LIBS = -L./tomcrypt/libs -ltomcrypt -ltfm
+LIBS = -L./tomcrypt/libs -ltomcrypt -ltfm -pthread
 
 LIBKSNIFFER_SRCS = \
 	api.h \

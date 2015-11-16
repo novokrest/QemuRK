@@ -1,5 +1,5 @@
-#ifndef DNS_HPP
-#define DNS_HPP
+#ifndef DNS_EX_HPP
+#define DNS_EX_HPP
 
 #include "dns.h"
 #include "udp.hpp"
@@ -60,4 +60,4 @@ public:
     DnsAnswer Resolve(std::string const &hostname);
 };
 
-#endif // DNS_HPP
+#endif // DNS_EX_HPP
