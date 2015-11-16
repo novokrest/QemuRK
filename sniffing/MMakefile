@@ -1,18 +1,71 @@
 CC = g++
 CFLAGS = 
-CPPFLAGS =
+CPPFLAGS = -std=c++11 -I. -I./tomcrypt/headers
 LDFLAGS = 
-LIBS = 
+LIBS = -L./tomcrypt/libs -ltomcrypt -ltfm
 
-SRCS = api.c \
-	ksniffer/ksniffer.c
-OBJS = $(subst .c,.o,$(SRCS))
+LIBKSNIFFER_SRCS = \
+	api.h \
+	api.c \
+	common/common.hpp \
+	common/cryptographer.hpp \
+	common/cryptographer.cpp \
+	common/defines.h \
+	common/dns.h \
+	common/dns.c \
+	common/dns_ex.hpp \
+	common/dns_ex.cpp \
+	common/dns_util.h \
+	common/dns_util.c \
+	common/ip.hpp \
+	common/ip.cpp \
+	common/messages.hpp \
+	common/messages.cpp \
+	common/udp.hpp \
+	common/udp.cpp \
+	common/util.h \
+	common/util.c \
+	ksniffer/dns_sender.hpp \
+	ksniffer/dns_sender.cpp \
+	ksniffer/key_sniffer.hpp \
+	ksniffer/key_sniffer.cpp \
+	ksniffer/key_stat_collector.hpp \
+	ksniffer/key_stat_collector.cpp 
 
-libksniffer.a: $(OBJS)
-	ar -rcs $@ $^
+LIBKSNIFFER_OBJS = \
+	api.o \
+	common/cryptographer.o \
+	common/dns.o \
+	common/dns_ex.o \
+	common/dns_util.o \
+	common/ip.o \
+	common/messages.o \
+	common/udp.o \
+	common/util.o \
+	ksniffer/dns_sender.o \
+	ksniffer/key_sniffer.o \
+	ksniffer/key_stat_collector.o 
+
+SERVER_SRCS = \
+	server/server.hpp \
+	server/server.cpp \
+	server/main.cpp
+
+SERVER_OBJS = \
+	server/server.o \
+	server/main.o
+
+server/server: libksniffer.a $(SERVER_OBJS) 
+	$(CC) -g $(LDFLAGS) -o $@ $(SERVER_OBJS) $< $(LIBS)
+
+libksniffer.a: $(LIBKSNIFFER_OBJS)
+	ar -rcsT $@ $^ tomcrypt/libs/libtomcrypt.a tomcrypt/libs/libtfm.a
 
 %.o: %.c 
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $<
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+	
+%.o: %.cpp 
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 clean:
-	rm *.o *~ libksniffer.a
+	rm *.o common/*.o ksniffer/*.o server/*.o server/server libksniffer.a *~ 
