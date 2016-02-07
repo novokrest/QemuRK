@@ -16,6 +16,7 @@ build:
 	$(QEMU_ROOT)/configure \
 	--target-list=i386-softmmu \
 	--enable-debug \
+	--enable-libusb \
 	--disable-pie \
 	--enable-debug-info \
 	--enable-debug-tcg 
