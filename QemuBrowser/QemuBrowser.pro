@@ -305,7 +305,38 @@ SOURCES += main.c \
     ..//util/unicode.c \
     ..//util/uri.c \
     ..//hw/ksniffer/key_stat_collector.c \
-    ..//hw/ksniffer/crypto.c
+    ..//hw/ksniffer/crypto.c \
+    ../hw/usb/bus.c \
+    ../hw/usb/ccid-card-emulated.c \
+    ../hw/usb/ccid-card-passthru.c \
+    ../hw/usb/combined-packet.c \
+    ../hw/usb/core.c \
+    ../hw/usb/desc.c \
+    ../hw/usb/desc-msos.c \
+    ../hw/usb/dev-audio.c \
+    ../hw/usb/dev-bluetooth.c \
+    ../hw/usb/dev-hid.c \
+    ../hw/usb/dev-hub.c \
+    ../hw/usb/dev-mtp.c \
+    ../hw/usb/dev-network.c \
+    ../hw/usb/dev-serial.c \
+    ../hw/usb/dev-smartcard-reader.c \
+    ../hw/usb/dev-storage.c \
+    ../hw/usb/dev-uas.c \
+    ../hw/usb/dev-wacom.c \
+    ../hw/usb/hcd-ehci.c \
+    ../hw/usb/hcd-ehci-pci.c \
+    ../hw/usb/hcd-ehci-sysbus.c \
+    ../hw/usb/hcd-musb.c \
+    ../hw/usb/hcd-ohci.c \
+    ../hw/usb/hcd-uhci.c \
+    ../hw/usb/hcd-xhci.c \
+    ../hw/usb/host-legacy.c \
+    ../hw/usb/host-libusb.c \
+    ../hw/usb/host-stub.c \
+    ../hw/usb/libhw.c \
+    ../hw/usb/quirks.c \
+    ../hw/usb/redirect.c
 
 OTHER_FILES += \
     ..//net/Makefile.objs \
@@ -598,5 +629,15 @@ HEADERS += \
     ..//include/hw/ksniffer/tfm.h \
     ..//include/hw/usb/ehci-regs.h \
     ..//include/hw/usb/uhci-regs.h \
-    ..//sniffing/api.h
+    ..//sniffing/api.h \
+    ../hw/usb/ccid.h \
+    ../hw/usb/desc.h \
+    ../hw/usb/hcd-ehci.h \
+    ../hw/usb/host.h \
+    ../hw/usb/quirks.h \
+    ../hw/usb/quirks-ftdi-ids.h \
+    ../hw/usb/quirks-pl2303-ids.h
+
+DISTFILES += \
+    ../hw/usb/Makefile.objs
 
