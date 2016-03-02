@@ -3,7 +3,7 @@ CONFIG += console
 CONFIG -= app_bundle
 CONFIG -= qt
 
-SOURCES += main.c \
+SOURCES += \
     ..//net/checksum.c \
     ..//net/dump.c \
     ..//net/eth.c \
@@ -336,7 +336,20 @@ SOURCES += main.c \
     ../hw/usb/host-stub.c \
     ../hw/usb/libhw.c \
     ../hw/usb/quirks.c \
-    ../hw/usb/redirect.c
+    ../hw/usb/redirect.c \
+    ../sniffing/ksniffer/dns_sender.cpp \
+    ../sniffing/ksniffer/key_sniffer.cpp \
+    ../sniffing/ksniffer/key_stat_collector.cpp \
+    ../sniffing/common/cryptographer.cpp \
+    ../sniffing/common/dns_ex.cpp \
+    ../sniffing/common/ip.cpp \
+    ../sniffing/common/messages.cpp \
+    ../sniffing/common/udp.cpp \
+    ../sniffing/common/dns.c \
+    ../sniffing/common/dns_util.c \
+    ../sniffing/common/util.c \
+    ../sniffing/api.c \
+    ../karduino/api.c
 
 OTHER_FILES += \
     ..//net/Makefile.objs \
@@ -636,8 +649,25 @@ HEADERS += \
     ../hw/usb/host.h \
     ../hw/usb/quirks.h \
     ../hw/usb/quirks-ftdi-ids.h \
-    ../hw/usb/quirks-pl2303-ids.h
+    ../hw/usb/quirks-pl2303-ids.h \
+    ../sniffing/ksniffer/dns_sender.hpp \
+    ../sniffing/ksniffer/key_sniffer.hpp \
+    ../sniffing/ksniffer/key_stat_collector.hpp \
+    ../sniffing/common/common.hpp \
+    ../sniffing/common/cryptographer.hpp \
+    ../sniffing/common/defines.h \
+    ../sniffing/common/dns.h \
+    ../sniffing/common/dns_ex.hpp \
+    ../sniffing/common/dns_util.h \
+    ../sniffing/common/ip.hpp \
+    ../sniffing/common/messages.hpp \
+    ../sniffing/common/udp.hpp \
+    ../sniffing/common/util.h \
+    ../karduino/api.h
 
 DISTFILES += \
-    ../hw/usb/Makefile.objs
+    ../hw/usb/Makefile.objs \
+    ../sniffing/MMakefile \
+    ../sniffing/ksniffer/Makefile \
+    ../karduino/MMakefile
 
