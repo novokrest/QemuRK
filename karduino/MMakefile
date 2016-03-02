@@ -1,0 +1,27 @@
+CC = g++
+CFLAGS =
+CPPFLAGS = -std=c++11 -I.
+LDFLAGS =
+LIBS =
+
+LIBKARDUINO_SRCS = \
+    api.c
+
+LIBKARDUINO_OBJS = $(LIBKARDUINO_SRCS:.c=.o)
+
+LIBKARDUINO = libkarduino.a
+
+$(LIBKARDUINO): $(LIBKARDUINO_OBJS)
+	ar -rcsT $@ $^
+
+%.o: %.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+
+%.o: %.cpp
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+
+.PHONY: clean
+
+clean:
+	rm -rf *~ *.o $(LIBKARDUINO)
+

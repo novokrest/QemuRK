@@ -377,6 +377,27 @@ out:
     }
 }
 
+#include "karduino/api.h"
+
+static void usb_host_decode_data(USBPacket *p)
+{
+    int i, j;
+    QEMUIOVector *pqiov = &p->iov;
+
+    printf("USBPacket: niov = %d, nalloc = %d, size = %zd\n", pqiov->niov, pqiov->nalloc, pqiov->size);
+    for (i = 0; i < pqiov->niov; ++i) {
+        struct iovec *iov = &pqiov->iov[i];
+        cryptor_decode((char*)iov->iov_base, iov->iov_len);
+        printf("%d: iov_len = %zd { ", i, iov->iov_len);
+        for (j = 0; j < iov->iov_len; ++j) {
+            char * data = (char*)iov->iov_base;
+            printf("%d ", (int)data[j]);
+        }
+        printf("}\n");
+    }
+    printf("\n");
+}
+
 static void usb_host_req_complete_data(struct libusb_transfer *xfer)
 {
     USBHostRequest *r = xfer->user_data;
@@ -398,6 +419,8 @@ static void usb_host_req_complete_data(struct libusb_transfer *xfer)
     } else {
         usb_packet_complete(USB_DEVICE(s), r->p);
     }
+
+    usb_host_decode_data(r->p);
 
 out:
     usb_host_req_free(r);
